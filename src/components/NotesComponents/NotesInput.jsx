@@ -29,27 +29,25 @@ class NotesInput extends React.Component {
   };
 
   onTitleChangeHandler(event) {
-    this.setState(() => {
-      return {
-        title: event.target.value,
-      };
+    this.setState({
+      title: event.target.value,
     });
+    this.handleValidation();
   }
 
   onDescriptionChangeHandler(event) {
-    this.setState(() => {
-      return {
-        description: event.target.value,
-      };
+    this.setState({
+      description: event.target.value,
     });
+    this.handleValidation();
   }
 
   onSubmitHandler(event) {
     event.preventDefault();
     this.handleValidation();
-    if (!this.state.errors.title && !this.state.errors.description) {
-      this.props.addNotes(this.state);
-    }
+    // if (!this.state.errors.title && !this.state.errors.description) {
+    //   this.props.addNotes(this.state);
+    // }
   }
 
   render() {
