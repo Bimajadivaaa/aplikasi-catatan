@@ -7,6 +7,7 @@ class NotesInput extends React.Component {
     this.state = {
       title: "",
       description: "",
+      errors : {title : '', description : ''} 
     };
 
     this.onTitleChangeHandler = this.onTitleChangeHandler.bind(this);
@@ -19,11 +20,10 @@ class NotesInput extends React.Component {
     let errors = { title: '', description: ''};
 
     if (!title) {
-     errors.title = 'title is required';
+     errors.title = 'Judul tidak boleh kosong!';
     }
-
     if (!description) {
-      errors.description = 'description is required';
+      errors.description = 'Deskripsi tidak boleh kosong!';
     }
     this.setState({ errors });
   }
@@ -47,12 +47,13 @@ class NotesInput extends React.Component {
   onSubmitHandler(event) {
     event.preventDefault();
     this.props.addNotes(this.state);
+    this.handleValidation();
+
   }
 
   render() {
-
     const { errors } = this.state;
-
+    
     return (
       <form className="notes_input" onSubmit={this.onSubmitHandler}>
         <input
