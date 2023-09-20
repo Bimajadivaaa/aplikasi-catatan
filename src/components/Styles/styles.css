@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: wheat;
+}
+
+.notes_app {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20pxpx;
+}
+
+.notes_app h1 {
+  font-weight: bold;
+  font-size: 28px;
+  margin-bottom: 10px;
+  margin-top: 15px;
+}
+
+.notes_items {
+  display: flex;
+  align-items: center;
+  margin: 16px 0;
+  padding: 15px;
+  border: 2px black;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.notes_items__body {
+  margin-left: 7px;
+  padding-left: 5px;
+  border-left: 20px;
+  flex: 1;
+}
+
+.notes_items__title {
+  padding: 5px 0;
+  font-size: 20px;
+}
+
+.notes_items__description {
+  font-weight: lighter;
+  font-size: 13px;
+}
+
+.notes_items__deleteButton {
+  cursor: pointer;
+  padding: 9px;
+  font-size: 17px;
+  font-weight: bold;
+  background-color: red;
+  color: white;
+  border: 0;
+  border-radius: 10px;
+}
+.notes_input {
+  background-color: white;
+  border: 1px black;
+  padding: 20px;
+  margin: 11px 0;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.notes_input input {
+  display: block;
+  border-radius: 10px;
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0;
+  font-family: "Poppins", sans-serif;
+}
+
+.notes_input button {
+  border-radius: 5px;
+  width: 100%;
+  padding: 8px;
+  font-family: "Poppins", sans-serif;
+}
