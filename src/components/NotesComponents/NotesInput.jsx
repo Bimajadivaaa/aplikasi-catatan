@@ -46,14 +46,16 @@ class NotesInput extends React.Component {
 
   onSubmitHandler(event) {
     event.preventDefault();
-    this.props.addNotes(this.state);
     this.handleValidation();
+    if(!this.state.errors.title && !this.state.errors.description){
+      this.props.addNotes(this.state)
+    }
 
   }
 
   render() {
     const { errors } = this.state;
-    
+
     return (
       <form className="notes_input" onSubmit={this.onSubmitHandler}>
         <input
@@ -62,14 +64,14 @@ class NotesInput extends React.Component {
           value={this.state.title}
           onChange={this.onTitleChangeHandler}
         />
-        {errors.title != '' && <span style={{color: "red"}}>{this.state.errors.title}</span>}
+        {errors.title && <span style={{color: "red"}}>{errors.title}</span>}
         <input
           type="text"
           placeholder="Masukkan Deskripsi"
           value={this.state.description}
           onChange={this.onDescriptionChangeHandler}
         />
-        {errors.description != '' && <span style={{color: "red"}}>{this.state.errors.description}</span>}
+        {errors.description && <span style={{color: "red"}}>{errors.description}</span>}
         <button type="submit">Tambah Catatan</button>
       </form>
     );
