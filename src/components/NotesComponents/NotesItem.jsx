@@ -3,7 +3,7 @@ import NotesItemBody from "./NotesItemBody";
 
 const NotesItem = ({title, description}) => {
     return (
-        <div>
+        <div className="notes_items">
             <NotesItemBody title={title} description={description}/>
         </div>
     )
