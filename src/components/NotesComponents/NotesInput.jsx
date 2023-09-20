@@ -45,9 +45,9 @@ class NotesInput extends React.Component {
   onSubmitHandler(event) {
     event.preventDefault();
     this.handleValidation();
-    // if (!this.state.errors.title && !this.state.errors.description) {
-    //   this.props.addNotes(this.state);
-    // }
+    if (!this.state.errors.title && !this.state.errors.description) {
+      this.props.addNotes(this.state);
+    }
   }
 
   render() {
