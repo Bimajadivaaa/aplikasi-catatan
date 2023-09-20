@@ -7,7 +7,7 @@ class NotesInput extends React.Component {
     this.state = {
       title: "",
       description: "",
-      errors : {title : '', description : ''} 
+      errors: { title: "", description: "" },
     };
 
     this.onTitleChangeHandler = this.onTitleChangeHandler.bind(this);
@@ -17,16 +17,16 @@ class NotesInput extends React.Component {
 
   handleValidation = () => {
     const { title, description } = this.state;
-    let errors = { title: '', description: ''};
+    let errors = { title: "", description: "" };
 
     if (!title) {
-     errors.title = 'Judul tidak boleh kosong!';
+      errors.title = "Judul tidak boleh kosong!";
     }
     if (!description) {
-      errors.description = 'Deskripsi tidak boleh kosong!';
+      errors.description = "Deskripsi tidak boleh kosong!";
     }
     this.setState({ errors });
-  }
+  };
 
   onTitleChangeHandler(event) {
     this.setState(() => {
@@ -47,10 +47,9 @@ class NotesInput extends React.Component {
   onSubmitHandler(event) {
     event.preventDefault();
     this.handleValidation();
-    if(!this.state.errors.title && !this.state.errors.description){
-      this.props.addNotes(this.state)
+    if (!this.state.errors.title && !this.state.errors.description) {
+      this.props.addNotes(this.state);
     }
-
   }
 
   render() {
@@ -64,14 +63,16 @@ class NotesInput extends React.Component {
           value={this.state.title}
           onChange={this.onTitleChangeHandler}
         />
-        {errors.title && <span style={{color: "red"}}>{errors.title}</span>}
+        {errors.title && <span style={{ color: "red" }}>{errors.title}</span>}
         <input
           type="text"
           placeholder="Masukkan Deskripsi"
           value={this.state.description}
           onChange={this.onDescriptionChangeHandler}
         />
-        {errors.description && <span style={{color: "red"}}>{errors.description}</span>}
+        {errors.description && (
+          <span style={{ color: "red" }}>{errors.description}</span>
+        )}
         <button type="submit">Tambah Catatan</button>
       </form>
     );

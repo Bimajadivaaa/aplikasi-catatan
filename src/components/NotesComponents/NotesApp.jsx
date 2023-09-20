@@ -16,18 +16,6 @@ class NotesApp extends React.Component {
     this.onDeleteNotesHandler = this.onDeleteNotesHandler.bind(this);
   }
 
-  // isEmptyValidation = () => {
-  //   const {title, description} = this.state;
-  //   let error = '';
-  //   let formIsValid = true;
-  //   if (!title || !description){
-  //     formIsValid = false;
-  //     error = "Input tidak boleh Kosong!"
-  //   }
-  //   this.setState({error: error})
-  //   return formIsValid;
-  // }
-
   onAddNotesHandler({ title, description }) {
     this.setState((previouState) => {
       return {

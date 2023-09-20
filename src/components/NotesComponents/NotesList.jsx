@@ -6,11 +6,7 @@ const NotesList = ({ item, onDelete }) => {
     <div>
       {item &&
         item.map((note) => (
-          <NotesItem 
-          key={note.id} 
-          id={note.id} 
-          onDelete={onDelete}
-          {...note} />
+          <NotesItem key={note.id} id={note.id} onDelete={onDelete} {...note} />
         ))}
     </div>
   );
