@@ -47,7 +47,7 @@ class NotesApp extends React.Component {
   }
   
 
-  onAddNotesHandler({ title, body }) {
+  onAddNotesHandler({ title, body}) {
     this.setState((prevState) => ({
       notes: [
         ...prevState.notes,
@@ -55,6 +55,7 @@ class NotesApp extends React.Component {
           id: +new Date(),
           title,
           body,
+          createdAt : Date.now(),
         },
       ],
     }));
