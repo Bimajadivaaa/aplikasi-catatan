@@ -6,8 +6,8 @@ class NotesInput extends React.Component {
 
     this.state = {
       title: "",
-      description: "",
-      errors: { title: "", description: "" },
+      body: "",
+      errors: { title: "", body: "" },
     };
 
     this.onTitleChangeHandler = this.onTitleChangeHandler.bind(this);
@@ -16,14 +16,14 @@ class NotesInput extends React.Component {
   }
 
   handleValidation = () => {
-    const { title, description } = this.state;
-    let errors = { title: "", description: "" };
+    const { title, body } = this.state;
+    let errors = { title: "", body: "" };
 
     if (!title) {
       errors.title = "Judul tidak boleh kosong!";
     }
-    if (!description) {
-      errors.description = "Deskripsi tidak boleh kosong!";
+    if (!body) {
+      errors.body = "Catatan tidak boleh kosong!";
     }
     this.setState({ errors });
   };
@@ -37,7 +37,7 @@ class NotesInput extends React.Component {
 
   onDescriptionChangeHandler(event) {
     this.setState({
-      description: event.target.value,
+      body: event.target.value,
     });
     this.handleValidation();
   }
@@ -45,7 +45,7 @@ class NotesInput extends React.Component {
   onSubmitHandler(event) {
     event.preventDefault();
     this.handleValidation();
-    if (!this.state.errors.title && !this.state.errors.description) {
+    if (!this.state.errors.title && !this.state.errors.body) {
       this.props.addNotes(this.state);
     }
   }
@@ -62,14 +62,14 @@ class NotesInput extends React.Component {
           onChange={this.onTitleChangeHandler}
         />
         {errors.title && <span style={{ color: "red" }}>{errors.title}</span>}
-        <input
+        <textarea
           type="text"
-          placeholder="Masukkan Deskripsi"
-          value={this.state.description}
+          placeholder="Masukkan Catatanmu disini..."
+          value={this.state.body}
           onChange={this.onDescriptionChangeHandler}
         />
-        {errors.description && (
-          <span style={{ color: "red" }}>{errors.description}</span>
+        {errors.body && (
+          <span style={{ color: "red" }}>{errors.body}</span>
         )}
         <button type="submit">Tambah Catatan</button>
       </form>

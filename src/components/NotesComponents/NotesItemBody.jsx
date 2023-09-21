@@ -1,10 +1,11 @@
 import React from "react";
 
-const NotesItemBody = ({ title, description }) => {
+const NotesItemBody = ({ title, body, createdAt, archived }) => {
   return (
     <div className="notes_items__body">
       <h3 className="notes_items__title">{title}</h3>
-      <p className="notes_items__description">{description}</p>
+      <h4 className="notes_items__date">{createdAt}</h4>
+      <textarea readOnly className="notes_items__textarea">{body}</textarea>
     </div>
   );
 };
