@@ -25,12 +25,12 @@ body {
 
 .notes_items {
   display: flex;
-  align-items: center;
   margin: 16px 0;
   padding: 15px;
   border: 2px black;
   border-radius: 10px;
   background-color: white;
+  flex-direction: column;
 }
 
 .notes_items__body {
@@ -55,19 +55,29 @@ body {
   padding: 12px;
   margin: 12px 0;
   height: 150px;
-
   border-radius: 10px;
   resize: none;
 }
 
-.notes_items__deleteButton , .notes_items__archiveButton{
+.notes_items__deleteButton{
   cursor: pointer;
   padding: 9px;
   margin-left: 10px;
-  margin-top: 40px;
   font-size: 17px;
   font-weight: bold;
   background-color: red;
+  color: white;
+  border: 0;
+  border-radius: 10px;
+}
+.notes_items__archiveButton{
+  cursor: pointer;
+  padding: 9px;
+  margin-left: 10px;
+  margin-top: 10px;
+  font-size: 17px;
+  font-weight: bold;
+  background-color: rgb(255, 128, 0);
   color: white;
   border: 0;
   border-radius: 10px;

@@ -12,10 +12,24 @@ class NotesApp extends React.Component {
     this.state = {
       notes: listData(),
       keyword: "",
+      archiveNotes: [],
     };
 
     this.onAddNotesHandler = this.onAddNotesHandler.bind(this);
     this.onDeleteNotesHandler = this.onDeleteNotesHandler.bind(this);
+    this.onArchiveNotesHandler = this.onArchiveNotesHandler.bind(this);
+  }
+  onArchiveNotesHandler(id) {
+    const { notes, archiveNotes } = this.state;
+    const noteToArchive = notes.find((item) => item.id === id);
+
+    if (noteToArchive) {
+      const updateNotes = notes.filter((item) => item.id !== id);
+      this.setState({
+        notes: updateNotes,
+        archiveNotes: [...archiveNotes, noteToArchive],
+      });
+    }
   }
 
   onAddNotesHandler({ title, body }) {
@@ -31,9 +45,16 @@ class NotesApp extends React.Component {
     }));
   }
 
-  onDeleteNotesHandler(id) {
-    const filteredNotes = this.state.notes.filter((item) => item.id !== id);
-    this.setState({ notes: filteredNotes });
+  onDeleteNotesHandler(id, isArchived = false) {
+    if (isArchived) {
+      const filteredAchivedNotes = this.state.archiveNotes.filter(
+        (item) => item.id !== id
+      );
+      this.setState({ archiveNotes: filteredAchivedNotes });
+    } else {
+      const filteredNotes = this.state.notes.filter((item) => item.id !== id);
+      this.setState({ notes: filteredNotes });
+    }
   }
 
   conditionNotesIsEmpty() {
@@ -48,28 +69,52 @@ class NotesApp extends React.Component {
         item.title.toLowerCase().includes(lowerCaseKeyword) ||
         item.body.toLowerCase().includes(lowerCaseKeyword)
     );
-    // if (filterNotes.length === 0){
-      
-    // }
     return filterNotes;
   }
 
   render() {
     const filteredNotes = this.searchNotes();
+    const noSearchResult = filteredNotes.length === 0;
+
     return (
       <div className="notes_app">
         <h1>Tambah Catatan</h1>
         <NotesInput addNotes={this.onAddNotesHandler} />
         {this.conditionNotesIsEmpty() ? (
-          <p className="notes-list__empty-message">Tidak ada catatan tersedia</p>
+          <p className="notes-list__empty-message">
+            Tidak ada catatan tersedia
+          </p>
         ) : (
           <>
             <h1>Daftar Catatan</h1>
+            
             <NotesSearchButton
-            keyword={this.state.keyword}
-            onKeywordChange={(event)=> this.setState({keyword : event.target.value})}/>
-            <NotesList item={filteredNotes} onDelete={this.onDeleteNotesHandler} />
+              keyword={this.state.keyword}
+              onKeywordChange={(event) =>
+                this.setState({ keyword: event.target.value })
+              }
+            />
+            {noSearchResult && !this.conditionNotesIsEmpty() && (
+              <p>Mohon maaf kata kunci tidak ada dalam pencarian.</p>
+            )}
+            <NotesList
+              item={filteredNotes}
+              onDelete={this.onDeleteNotesHandler}
+              onArchive={this.onArchiveNotesHandler}
+            />
           </>
+        )}
+        {this.state.archiveNotes.length > 0 && (
+          <>
+            <h1>Arsip</h1>
+            <NotesList
+              item={this.state.archiveNotes}
+              onDelete={(id) => this.onDeleteNotesHandler(id, true)}
+            />
+          </>
+        )}
+        {this.state.archiveNotes.length === 0 && (
+          <p className="notes-list__empty-message">Tidak ada arsip tersedia</p>
         )}
       </div>
     );

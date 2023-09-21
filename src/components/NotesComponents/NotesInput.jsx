@@ -19,15 +19,17 @@ class NotesInput extends React.Component {
   handleValidation = () => {
     const { title, body } = this.state;
     let errors = { title: "", body: "" };
-
     if (!title) {
       errors.title = "Judul tidak boleh kosong!";
     }
     if (!body) {
       errors.body = "Catatan tidak boleh kosong!";
     }
-    this.setState({ errors });
+    this.setState({ 
+      errors: errors,
+     });
   };
+  
 
   handleLimitCharacter = (event) => {
     const title = event.target.value;
@@ -45,21 +47,21 @@ class NotesInput extends React.Component {
     this.setState({
       title: event.target.value,
     });
-    this.handleValidation();
   }
 
   onDescriptionChangeHandler(event) {
     this.setState({
       body: event.target.value,
     });
-    this.handleValidation();
   }
 
   onSubmitHandler(event) {
     event.preventDefault();
     this.handleValidation();
     if (!this.state.errors.title && !this.state.errors.body) {
-      this.props.addNotes(this.state);
+      if(this.state.title.trim() !== "" && this.state.body.trim() !== ""){
+        this.props.addNotes(this.state);
+      }
     }
   }
 
