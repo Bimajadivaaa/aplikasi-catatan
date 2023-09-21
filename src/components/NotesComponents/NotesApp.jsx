@@ -18,6 +18,7 @@ class NotesApp extends React.Component {
     this.onAddNotesHandler = this.onAddNotesHandler.bind(this);
     this.onDeleteNotesHandler = this.onDeleteNotesHandler.bind(this);
     this.onArchiveNotesHandler = this.onArchiveNotesHandler.bind(this);
+    this.onUnarchiveNotesHandler = this.onUnarchiveNotesHandler.bind(this);
   }
   onArchiveNotesHandler(id) {
     const { notes, archiveNotes } = this.state;
@@ -31,6 +32,20 @@ class NotesApp extends React.Component {
       });
     }
   }
+
+  onUnarchiveNotesHandler(id) {
+    const { notes, archiveNotes } = this.state;
+    const noteToUnarchive = archiveNotes.find((item) => item.id === id);
+  
+    if (noteToUnarchive) {
+      const updatedArchiveNotes = archiveNotes.filter((item) => item.id !== id);
+      this.setState({
+        archiveNotes: updatedArchiveNotes,
+        notes: [...notes, noteToUnarchive],
+      });
+    }
+  }
+  
 
   onAddNotesHandler({ title, body }) {
     this.setState((prevState) => ({
@@ -87,7 +102,6 @@ class NotesApp extends React.Component {
         ) : (
           <>
             <h1>Daftar Catatan</h1>
-            
             <NotesSearchButton
               keyword={this.state.keyword}
               onKeywordChange={(event) =>
@@ -101,6 +115,7 @@ class NotesApp extends React.Component {
               item={filteredNotes}
               onDelete={this.onDeleteNotesHandler}
               onArchive={this.onArchiveNotesHandler}
+              isArchived={false}
             />
           </>
         )}
@@ -110,6 +125,8 @@ class NotesApp extends React.Component {
             <NotesList
               item={this.state.archiveNotes}
               onDelete={(id) => this.onDeleteNotesHandler(id, true)}
+              onUnarchive={this.onUnarchiveNotesHandler}
+              isArchived={true}
             />
           </>
         )}
