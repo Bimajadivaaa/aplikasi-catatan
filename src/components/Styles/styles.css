@@ -60,7 +60,7 @@ body {
   resize: none;
 }
 
-.notes_items__deleteButton {
+.notes_items__deleteButton , .notes_items__archiveButton{
   cursor: pointer;
   padding: 9px;
   margin-left: 10px;

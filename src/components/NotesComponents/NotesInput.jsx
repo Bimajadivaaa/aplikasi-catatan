@@ -8,6 +8,7 @@ class NotesInput extends React.Component {
       title: "",
       body: "",
       errors: { title: "", body: "" },
+      limitCharacter : 50,
     };
 
     this.onTitleChangeHandler = this.onTitleChangeHandler.bind(this);
@@ -27,6 +28,18 @@ class NotesInput extends React.Component {
     }
     this.setState({ errors });
   };
+
+  handleLimitCharacter = (event) => {
+    const title = event.target.value;
+    const limitCharacterNumber = 50 - title.length;
+
+    if(limitCharacterNumber >= 0 ){
+      this.setState({
+        title : title,
+        limitCharacter : limitCharacterNumber,
+      })
+    }
+  }
 
   onTitleChangeHandler(event) {
     this.setState({
@@ -59,8 +72,9 @@ class NotesInput extends React.Component {
           type="text"
           placeholder="Masukkan Judul"
           value={this.state.title}
-          onChange={this.onTitleChangeHandler}
+          onChange={this.handleLimitCharacter}
         />
+        <p>Sisa karakter : {this.state.limitCharacter}</p>
         {errors.title && <span style={{ color: "red" }}>{errors.title}</span>}
         <textarea
           type="text"
