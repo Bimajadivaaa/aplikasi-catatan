@@ -36,7 +36,7 @@ class NotesApp extends React.Component {
   onUnarchiveNotesHandler(id) {
     const { notes, archiveNotes } = this.state;
     const noteToUnarchive = archiveNotes.find((item) => item.id === id);
-  
+
     if (noteToUnarchive) {
       const updatedArchiveNotes = archiveNotes.filter((item) => item.id !== id);
       this.setState({
@@ -45,9 +45,8 @@ class NotesApp extends React.Component {
       });
     }
   }
-  
 
-  onAddNotesHandler({ title, body}) {
+  onAddNotesHandler({ title, body }) {
     this.setState((prevState) => ({
       notes: [
         ...prevState.notes,
@@ -55,7 +54,7 @@ class NotesApp extends React.Component {
           id: +new Date(),
           title,
           body,
-          createdAt : Date.now(),
+          createdAt: Date.now(),
         },
       ],
     }));

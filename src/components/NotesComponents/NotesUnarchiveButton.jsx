@@ -1,6 +1,6 @@
 import React from "react";
 
-const NotesUnarchiveButton = ({ id, onUnarchive ,isArchive}) => {
+const NotesUnarchiveButton = ({ id, onUnarchive, isArchive }) => {
   return (
     <button
       className="notes_items__unArchiveButton"
