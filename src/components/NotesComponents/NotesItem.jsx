@@ -18,20 +18,22 @@ const NotesItem = ({
   return (
     <div className="notes_items">
       <NotesItemBody title={title} body={body} createdAt={createdAt} />
-      <p className="notes_items__tangal">Dibuat pada tanggal : {showFormattedDate(createdAt)}</p>
-      {!isArchive && (
+      <p className="notes_items__tangal">
+        Dibuat pada tanggal : {showFormattedDate(createdAt)}
+      </p>
+      {/* {!isArchive && (
         <>
-        <NotesArchiveButton id={id} onArchive={onArchive}/>
-        <NotesDeleteButton id={id} onDelete={onDelete}/>
-        {onUnarchive && (
-          <NotesUnarchiveButton id={id} onUnarchive={onUnarchive}/>
-        )}
+          <NotesArchiveButton id={id} onArchive={onArchive} isArchive={isArchive}/>
+          <NotesDeleteButton id={id} onDelete={onDelete} />
+          {onUnarchive && (
+            <NotesUnarchiveButton id={id} onUnarchive={onUnarchive}/>
+          )}
         </>
-      )}
+      )} */}
+      <NotesArchiveButton id={id} onArchive={onArchive} isArchive={isArchive}/>
+      <NotesDeleteButton id={id} onDelete={onDelete} />
+      <NotesUnarchiveButton id={id} onUnarchive={onUnarchive} isArchive={isArchive}/>
     </div>
-    
   );
 };
 export default NotesItem;
-
-

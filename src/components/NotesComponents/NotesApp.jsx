@@ -116,7 +116,7 @@ class NotesApp extends React.Component {
               item={filteredNotes}
               onDelete={this.onDeleteNotesHandler}
               onArchive={this.onArchiveNotesHandler}
-              isArchived={false}
+              isArchive={false}
             />
           </>
         )}
@@ -127,7 +127,7 @@ class NotesApp extends React.Component {
               item={this.state.archiveNotes}
               onDelete={(id) => this.onDeleteNotesHandler(id, true)}
               onUnarchive={this.onUnarchiveNotesHandler}
-              isArchived={true}
+              isArchive={true}
             />
           </>
         )}

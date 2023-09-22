@@ -8,7 +8,7 @@ class NotesInput extends React.Component {
       title: "",
       body: "",
       errors: { title: "", body: "" },
-      limitCharacter : 50,
+      limitCharacter: 50,
     };
 
     this.onTitleChangeHandler = this.onTitleChangeHandler.bind(this);
@@ -25,23 +25,22 @@ class NotesInput extends React.Component {
     if (!body) {
       errors.body = "Catatan tidak boleh kosong!";
     }
-    this.setState({ 
+    this.setState({
       errors: errors,
-     });
+    });
   };
-  
 
   handleLimitCharacter = (event) => {
     const title = event.target.value;
     const limitCharacterNumber = 50 - title.length;
 
-    if(limitCharacterNumber >= 0 ){
+    if (limitCharacterNumber >= 0) {
       this.setState({
-        title : title,
-        limitCharacter : limitCharacterNumber,
-      })
+        title: title,
+        limitCharacter: limitCharacterNumber,
+      });
     }
-  }
+  };
 
   onTitleChangeHandler(event) {
     this.setState({
@@ -59,7 +58,7 @@ class NotesInput extends React.Component {
     event.preventDefault();
     this.handleValidation();
     if (!this.state.errors.title && !this.state.errors.body) {
-      if(this.state.title.trim() !== "" && this.state.body.trim() !== ""){
+      if (this.state.title.trim() !== "" && this.state.body.trim() !== "") {
         this.props.addNotes(this.state);
       }
     }
@@ -84,9 +83,7 @@ class NotesInput extends React.Component {
           value={this.state.body}
           onChange={this.onDescriptionChangeHandler}
         />
-        {errors.body && (
-          <span style={{ color: "red" }}>{errors.body}</span>
-        )}
+        {errors.body && <span style={{ color: "red" }}>{errors.body}</span>}
         <button type="submit">Tambah Catatan</button>
       </form>
     );

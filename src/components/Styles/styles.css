@@ -83,6 +83,11 @@ body {
   border: 0;
   border-radius: 10px;
 }
+
+.notes_items__archiveButton.isArchive{
+  display: none;
+}
+
 .notes_input {
   background-color: white;
   border: 1px black;

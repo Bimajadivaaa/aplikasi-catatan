@@ -1,7 +1,7 @@
 import React from "react";
 import NotesItem from "./NotesItem";
 
-const NotesList = ({ item, onDelete, onArchive, onUnarchive }) => {
+const NotesList = ({ item, onDelete, onArchive, onUnarchive, isArchive }) => {
   return (
     <div>
       {item &&
@@ -12,11 +12,11 @@ const NotesList = ({ item, onDelete, onArchive, onUnarchive }) => {
             onDelete={onDelete}
             onArchive={onArchive}
             onUnarchive={onUnarchive}
+            isArchive={isArchive}
             {...note}
           />
         ))}
     </div>
-    
   );
 };
 export default NotesList;
